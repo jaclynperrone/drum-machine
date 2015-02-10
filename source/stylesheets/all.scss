@@ -3,3 +3,17 @@
 
 @charset "utf-8";
 
+ul {
+	list-style: none;
+
+	li {
+		display: inline-block;
+		background-color: #eee;
+		width: 30px;
+		height: 30px;
+		&.on {
+			background-color: tomato;	
+		}
+	}
+
+}
