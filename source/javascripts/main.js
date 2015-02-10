@@ -5,7 +5,10 @@ $(function(){
   var hiHat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   var kick = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-  //timer stuff
+  var kickObject = $('.kick li');
+  var hiHatObject = $('.hihat li');
+
+  //timer
   var beat = 1;
 
   function timer() {
@@ -14,14 +17,12 @@ $(function(){
 
   function fireBeat() {
     var beatID = 'beat'+beat.toString();
-
     // console.log(beat);
 
+    //add color
     $('#'+beatID).addClass('on').siblings().removeClass('on');
 
-    //what beat are we on does its correspondng position in the hihat array have a 1 or a 0
-    //if it's a 1 trigger hihat sound
-
+    //play sound
     if (hiHat[beat-1] == 1) {
       console.log('HIHAT');
       document.getElementById('hihat-sound').currentTime=0;
@@ -32,7 +33,6 @@ $(function(){
       console.log('KICK');
       document.getElementById('kick-sound').currentTime=0;
       document.getElementById('kick-sound').play();
-
     }
 
     beat++;
@@ -41,34 +41,29 @@ $(function(){
     }
   }
 
-   $('.hihat li').click(function(){
-    var beatPosition = $(this).attr('rel');
-    
-    $(this).toggleClass('on');
-
-    if (hiHat[beatPosition-1] == 0) {
-        hiHat[beatPosition-1] = 1;
-    } else {
-      hiHat[beatPosition-1] = 0;
-    }
-    console.log(hiHat);
-   });
-
-
-    $('.kick li').click(function(){
-    var beatPosition = $(this).attr('rel');
-    
-    $(this).toggleClass('on');
-
-    if (kick[beatPosition-1] == 0) {
-        kick[beatPosition-1] = 1;
-    } else {
-      kick[beatPosition-1] = 0;
-    }
-    console.log(kick);
-   });
-
   timer();
+
+  
+
+  function triggerBeat(object, array) {
+
+    $(object).click(function(){
+      var beatPosition = $(this).attr('rel');
+
+      $(this).toggleClass('on');
+
+      if (array[beatPosition-1] == 0) {
+          array[beatPosition-1] = 1;
+      } else {
+        array[beatPosition-1] = 0;
+      }
+      // console.log(kick);
+   });
+
+  }
+
+  triggerBeat(kickObject, kick);
+  triggerBeat(hiHatObject, hiHat);
 
 
   //comments
