@@ -1,19 +1,53 @@
 $(function(){
 
   var totalBeats = 16;
+  var hiHat = [];
+  var kick = [];
+  var bpm = 120;
+  var speed = (60000 / bpm);
 
-  var hiHat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  var kick = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-  var kickObject = $('.kick li');
-  var hiHatObject = $('.hihat li');
+  function init() {
+    for(var i = 0; i < totalBeats; i++) {
+      hiHat.push(0);  
+      kick.push(0);
+
+      generateSquares('.kick', i);
+      generateSquares('.hihat', i);
+    }
+    //start the sequencer
+    // var timeout = setInterval(fireBeat, speed);
+    startTimer(speed);
+  }
+
+  function generateSquares(element, i) {
+    $(element).append('<li rel="'+i+'"></li>');
+  }
+
+  var timer;
+
+  function startTimer(speed) {
+    timer = setInterval(fireBeat, speed);
+  }
+
+  function clearTimer() {
+    clearTimeout(timer);
+  }
+
+  $('#set-bpm').change(function(){
+    bpm = $(this).val();
+    speed = (60000 / bpm);
+
+    clearTimer();
+    startTimer(speed);
+    // console.log(bpm);
+    // console.log(speed);
+  });
+
+  init();
 
   //timer
-  var beat = 1;
-
-  function timer() {
-    setInterval(fireBeat, 300);
-  }
+  var beat = 0;
 
   function fireBeat() {
     var beatID = 'beat'+beat.toString();
@@ -23,57 +57,50 @@ $(function(){
     $('#'+beatID).addClass('on').siblings().removeClass('on');
 
     //play sound
-    if (hiHat[beat-1] == 1) {
-      console.log('HIHAT');
+    if (hiHat[beat] == 1) {
+      // console.log('HIHAT');
       document.getElementById('hihat-sound').currentTime=0;
       document.getElementById('hihat-sound').play();
     }
 
-    if (kick[beat-1] == 1) {
-      console.log('KICK');
+    if (kick[beat] == 1) {
+      // console.log('KICK');
       document.getElementById('kick-sound').currentTime=0;
       document.getElementById('kick-sound').play();
     }
 
     beat++;
-    if (beat > totalBeats) {
-      beat = 1;
+    if (beat > totalBeats-1) {
+      beat = 0;
     }
   }
 
-  timer();
+  var kickSquare = $('.kick li');
+  var hiHatSquare = $('.hihat li');
 
-  
-
-  function triggerBeat(object, array) {
-
-    $(object).click(function(){
-      var beatPosition = $(this).attr('rel');
+  function selectBeat(soundSquare, array) {
+    $(soundSquare).click(function(){
+      var squarePosition = $(this).attr('rel');
 
       $(this).toggleClass('on');
 
-      if (array[beatPosition-1] == 0) {
-          array[beatPosition-1] = 1;
+      if (array[squarePosition] == 0) {
+          array[squarePosition] = 1;
       } else {
-        array[beatPosition-1] = 0;
+        array[squarePosition] = 0;
       }
-      // console.log(kick);
+      // console.log(array);
    });
-
   }
 
-  triggerBeat(kickObject, kick);
-  triggerBeat(hiHatObject, hiHat);
+  selectBeat(kickSquare, kick);
+  selectBeat(hiHatSquare, hiHat);
 
 
   //comments
   //refactor sequencer into array
   //fireBeat function is getting big
-  //refactor beat numbers
-  //refactor functions
   //change sequence to rel
-
-
 
 
 });

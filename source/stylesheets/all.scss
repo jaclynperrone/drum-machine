@@ -3,14 +3,22 @@
 
 @charset "utf-8";
 
+.container {
+	padding: 3em 0;
+}
+
 ul {
 	list-style: none;
-
+	text-align: center;
+	font-size: 0;
 	li {
 		display: inline-block;
 		background-color: #eee;
 		width: 30px;
 		height: 30px;
+		cursor: pointer;
+		margin: 0.25rem;
+		
 		&.on {
 			background-color: tomato;	
 		}
