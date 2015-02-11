@@ -17,11 +17,11 @@ $(function(){
       document.getElementById(self.audioFileID).play;
     }
 
-    self.toggleSound = function(squarePosition) {
-      if (self.pattern[squarePosition] == 0) {
-        self.pattern[squarePosition] = 1;
+    self.toggleSound = function(status) {
+      if (self.pattern[status] == 0) {
+        self.pattern[status] = 1;
       } else {
-        self.pattern[squarePosition] = 0;
+        self.pattern[status] = 0;
       }
     }
 
@@ -29,12 +29,7 @@ $(function(){
 
 var kick = new Sound('kick-sound', [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
-$('.kick td').click(function(){
-  alert('hi');
-  // var squarePosition = $(this).attr('rel');
-  // $(this).toggleClass('on');
-  // kick.toggleSound(squarePosition);
-});
+
 
 
   function init() {
@@ -52,9 +47,6 @@ $('.kick td').click(function(){
   }
 
   
-
-
-
   function generateSquares(element, i) {
     $(element).append('<td rel="'+i+'"></td>');
   }
@@ -82,6 +74,12 @@ $('.kick td').click(function(){
   init();
   // kick.selectSound();
 
+$('.kick td').click(function(){
+  var squarePosition = $(this).attr('rel');
+  $(this).toggleClass('on');
+  kick.toggleSound(squarePosition);
+  console.log(kick.pattern);
+});
   //timer
   var beat = 0;
 
