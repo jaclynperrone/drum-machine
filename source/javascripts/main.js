@@ -3,6 +3,7 @@ $(function(){
   var totalBeats = 16;
   var hiHat = [];
   var kick = [];
+  var snare = [];
   var bpm = 120;
   var speed = (60000 / bpm);
 
@@ -11,12 +12,13 @@ $(function(){
     for(var i = 0; i < totalBeats; i++) {
       hiHat.push(0);  
       kick.push(0);
+      snare.push(0);
 
       generateSquares('.kick', i);
       generateSquares('.hihat', i);
+      generateSquares('.snare', i);
     }
     //start the sequencer
-    // var timeout = setInterval(fireBeat, speed);
     startTimer(speed);
   }
 
@@ -68,6 +70,11 @@ $(function(){
       document.getElementById('kick-sound').currentTime=0;
       document.getElementById('kick-sound').play();
     }
+    if (snare[beat] == 1) {
+      // console.log('KICK');
+      document.getElementById('snare-sound').currentTime=0;
+      document.getElementById('snare-sound').play();
+    }
 
     beat++;
     if (beat > totalBeats-1) {
@@ -77,6 +84,7 @@ $(function(){
 
   var kickSquare = $('.kick td');
   var hiHatSquare = $('.hihat td');
+  var snareSquare = $('.snare td');
 
   function selectBeat(soundSquare, array) {
     $(soundSquare).click(function(){
@@ -95,6 +103,7 @@ $(function(){
 
   selectBeat(kickSquare, kick);
   selectBeat(hiHatSquare, hiHat);
+  selectBeat(snareSquare, snare);
 
 
   //comments

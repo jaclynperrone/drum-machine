@@ -53,8 +53,12 @@ td {
 }
 
 .sequencer {
+	td{
+		background-color: $color-gray-medium;
+		background-color: #2F2F2F;
+	}
 	.on {
-		background-color: #74828C;
+		background-color: $color-gray-medium;
 	}
 }
 
@@ -67,6 +71,12 @@ td {
 .kick {
 	.on {
 		background-color: #3133E8;
+	}
+}
+
+.snare {
+	.on {
+		background-color: #2A6C1C;
 	}
 }
 
