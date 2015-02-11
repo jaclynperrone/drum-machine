@@ -1,26 +1,59 @@
 $(function(){
 
   var totalBeats = 16;
-  var hiHat = [];
-  var kick = [];
-  var snare = [];
+  // var hiHat = [];
+  // var kick = [];
+  // var snare = [];
   var bpm = 120;
   var speed = (60000 / bpm);
+
+  var Sound = function(audioFileID, pattern) {
+    var self = this;
+    self.audioFileID = audioFileID;
+    self.pattern = pattern;
+
+    self.play = function(){
+      document.getElementById(self.audioFileID).currentTime = 0;
+      document.getElementById(self.audioFileID).play;
+    }
+
+    self.toggleSound = function(squarePosition) {
+      if (self.pattern[squarePosition] == 0) {
+        self.pattern[squarePosition] = 1;
+      } else {
+        self.pattern[squarePosition] = 0;
+      }
+    }
+
+}
+
+var kick = new Sound('kick-sound', [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+
+$('.kick td').click(function(){
+  alert('hi');
+  // var squarePosition = $(this).attr('rel');
+  // $(this).toggleClass('on');
+  // kick.toggleSound(squarePosition);
+});
 
 
   function init() {
     for(var i = 0; i < totalBeats; i++) {
-      hiHat.push(0);  
-      kick.push(0);
-      snare.push(0);
+      // hiHat.push(0);  
+      // kick.pattern.push(0);
+      // snare.push(0);
 
       generateSquares('.kick', i);
-      generateSquares('.hihat', i);
-      generateSquares('.snare', i);
+      // generateSquares('.hihat', i);
+      // generateSquares('.snare', i);
     }
     //start the sequencer
     startTimer(speed);
   }
+
+  
+
+
 
   function generateSquares(element, i) {
     $(element).append('<td rel="'+i+'"></td>');
@@ -47,6 +80,7 @@ $(function(){
   });
 
   init();
+  // kick.selectSound();
 
   //timer
   var beat = 0;
@@ -59,22 +93,23 @@ $(function(){
     $('#'+beatID).addClass('on').siblings().removeClass('on');
 
     //play sound
-    if (hiHat[beat] == 1) {
-      // console.log('HIHAT');
-      document.getElementById('hihat-sound').currentTime=0;
-      document.getElementById('hihat-sound').play();
-    }
+    // if (hiHat[beat] == 1) {
+    //   // console.log('HIHAT');
+    //   document.getElementById('hihat-sound').currentTime=0;
+    //   document.getElementById('hihat-sound').play();
+    // }
 
-    if (kick[beat] == 1) {
+    if (kick.pattern[beat] == 1) {
       // console.log('KICK');
-      document.getElementById('kick-sound').currentTime=0;
-      document.getElementById('kick-sound').play();
+      kick.play();
+      // document.getElementById('kick-sound').currentTime=0;
+      // document.getElementById('kick-sound').play();
     }
-    if (snare[beat] == 1) {
-      // console.log('KICK');
-      document.getElementById('snare-sound').currentTime=0;
-      document.getElementById('snare-sound').play();
-    }
+    // if (snare[beat] == 1) {
+    //   // console.log('KICK');
+    //   document.getElementById('snare-sound').currentTime=0;
+    //   document.getElementById('snare-sound').play();
+    // }
 
     beat++;
     if (beat > totalBeats-1) {
@@ -82,28 +117,28 @@ $(function(){
     }
   }
 
-  var kickSquare = $('.kick td');
-  var hiHatSquare = $('.hihat td');
-  var snareSquare = $('.snare td');
+  // var kickSquare = $('.kick td');
+  // var hiHatSquare = $('.hihat td');
+  // var snareSquare = $('.snare td');
 
-  function selectBeat(soundSquare, array) {
-    $(soundSquare).click(function(){
-      var squarePosition = $(this).attr('rel');
+  // function selectBeat(soundSquare, array) {
+  //   $(soundSquare).click(function(){
+  //     var squarePosition = $(this).attr('rel');
 
-      $(this).toggleClass('on');
+  //     $(this).toggleClass('on');
 
-      if (array[squarePosition] == 0) {
-          array[squarePosition] = 1;
-      } else {
-        array[squarePosition] = 0;
-      }
-      // console.log(array);
-   });
-  }
+  //     if (array[squarePosition] == 0) {
+  //         array[squarePosition] = 1;
+  //     } else {
+  //       array[squarePosition] = 0;
+  //     }
+  //     // console.log(array);
+  //  });
+  // }
 
-  selectBeat(kickSquare, kick);
-  selectBeat(hiHatSquare, hiHat);
-  selectBeat(snareSquare, snare);
+  
+  // selectBeat(hiHatSquare, hiHat);
+  // selectBeat(snareSquare, snare);
 
 
   //comments
