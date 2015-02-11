@@ -1,39 +1,39 @@
-<div class="container">
-	<ul class="kick">
-	</ul>
-
-	<ul class="hihat">
-	</ul>
-
-	<ul class="sequencer">
-		<li id="beat0"></li>
-		<li id="beat1"></li>
-		<li id="beat2"></li>
-		<li id="beat3"></li>
-		<li id="beat4"></li>	
-		<li id="beat5"></li>
-		<li id="beat6"></li>
-		<li id="beat7"></li>
-		<li id="beat8"></li>	
-		<li id="beat9"></li>
-		<li id="beat10"></li>
-		<li id="beat11"></li>
-		<li id="beat12"></li>	
-		<li id="beat13"></li>
-		<li id="beat14"></li>
-		<li id="beat15"></li>
-	</ul>
-
-	<label>bpm
-		<select id="set-bpm">
-			<option val="120">120</option>
-			<option val="140">140</option>
-			<option val="160">160</option>
-			<option val="180">180</option>
-			<option val="200">200</option>
-		</select></label>
-
-</div>
+<table>
+	<tr class="kick">
+		<th>kick</th>
+	</tr>
+	<tr class="hihat">
+		<th>hihat</th>
+	</tr>
+	<tr class="sequencer">
+		<th>
+			<label for="set-bpm">bpm</label>
+				<select id="set-bpm">
+					<option val="120">120</option>
+					<option val="140">140</option>
+					<option val="160">160</option>
+					<option val="180">180</option>
+					<option val="200">200</option>
+				</select>
+		</th>
+		<td id="beat0"></td>
+		<td id="beat1"></td>
+		<td id="beat2"></td>
+		<td id="beat3"></td>
+		<td id="beat4"></td>	
+		<td id="beat5"></td>
+		<td id="beat6"></td>
+		<td id="beat7"></td>
+		<td id="beat8"></td>	
+		<td id="beat9"></td>
+		<td id="beat10"></td>
+		<td id="beat11"></td>
+		<td id="beat12"></td>	
+		<td id="beat13"></td>
+		<td id="beat14"></td>
+		<td id="beat15"></td>
+	</tr>
+</table>
 
 <audio id="hihat-sound" src="/audio/hi-hat.wav" preload="auto"></audio>
 <audio id="kick-sound" src="/audio/kick.wav" preload="auto"></audio>

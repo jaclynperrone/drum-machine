@@ -1,27 +1,72 @@
 @import "bourbon/bourbon";
-@import "base/base";
+// @import "base/base";
 
 @charset "utf-8";
 
-.container {
+$color-text-light: #bababa;
+$color-gray-dark: #333;
+$color-gray-medium: #282828;
+
+$color-body-bg: $color-gray-dark;
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: $color-body-bg;
 	padding: 3em 0;
 }
 
-ul {
-	list-style: none;
-	text-align: center;
-	font-size: 0;
-	li {
-		display: inline-block;
-		background-color: #eee;
-		width: 30px;
-		height: 30px;
-		cursor: pointer;
-		margin: 0.25rem;
-		
-		&.on {
-			background-color: tomato;	
-		}
-	}
-
+select {
+	background-color: $color-gray-medium;
+	border: none;
+	color: $color-text-light;
 }
+
+label {
+	display: block;
+}
+
+table {
+	border-spacing: 0.75em;
+  border-collapse: separate;
+  margin: 0 auto;
+}
+
+th {
+	color: $color-text-light;
+	text-align: right;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 0.875em;
+	font-weight: 300;
+}
+
+td {
+	@include transition(background-color, 0.1s);
+	background-color: #3D464C;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	border-radius: 25px;
+	&:hover {
+		background-color: darken(#3D464C, 3%);
+	}
+}
+
+.sequencer {
+	.on {
+		background-color: #74828C;
+	}
+}
+
+.hihat {
+	.on {
+		background-color: blueviolet;
+	}
+}
+
+.kick {
+	.on {
+		background-color: #3133E8;
+	}
+}
+

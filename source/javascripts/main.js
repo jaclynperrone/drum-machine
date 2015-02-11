@@ -21,7 +21,7 @@ $(function(){
   }
 
   function generateSquares(element, i) {
-    $(element).append('<li rel="'+i+'"></li>');
+    $(element).append('<td rel="'+i+'"></td>');
   }
 
   var timer;
@@ -75,8 +75,8 @@ $(function(){
     }
   }
 
-  var kickSquare = $('.kick li');
-  var hiHatSquare = $('.hihat li');
+  var kickSquare = $('.kick td');
+  var hiHatSquare = $('.hihat td');
 
   function selectBeat(soundSquare, array) {
     $(soundSquare).click(function(){
