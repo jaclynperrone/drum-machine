@@ -24,18 +24,14 @@ $(function(){
         self.pattern[status] = 0;
       }
     }
-
 }
 
-var kick = new Sound('kick-sound', [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
-
-
-
+var kick = new Sound('kick-sound', []);
 
   function init() {
     for(var i = 0; i < totalBeats; i++) {
       // hiHat.push(0);  
-      // kick.pattern.push(0);
+      kick.pattern.push(0);
       // snare.push(0);
 
       generateSquares('.kick', i);
@@ -98,7 +94,7 @@ $('.kick td').click(function(){
     // }
 
     if (kick.pattern[beat] == 1) {
-      // console.log('KICK');
+      console.log('KICK');
       kick.play();
       // document.getElementById('kick-sound').currentTime=0;
       // document.getElementById('kick-sound').play();
