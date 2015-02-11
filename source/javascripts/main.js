@@ -11,7 +11,7 @@ $(function(){
     self.audioElement = document.getElementById(self.audioFileID);
 
     self.play = function(){
-      console.log(self.audioElement);
+      // console.log(self.audioElement);
       self.audioElement.currentTime = 0;
       self.audioElement.play();
     }
@@ -64,7 +64,7 @@ $(function(){
     clearTimer();
     startTimer(speed);
     // console.log(bpm);
-    console.log(speed);
+    // console.log(speed);
   });
 
   init();
