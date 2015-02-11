@@ -2,7 +2,7 @@ $(function(){
 
   var totalBeats = 16;
   var bpm = 120;
-  var speed = (60000 / bpm);
+  var speed = (60000 / (2*bpm));
 
   var Sound = function(audioFileID, pattern) {
     var self = this;
@@ -59,12 +59,12 @@ $(function(){
 
   $('#set-bpm').change(function(){
     bpm = $(this).val();
-    speed = (60000 / bpm);
+    speed = (60000 / (2*bpm));
 
     clearTimer();
     startTimer(speed);
     // console.log(bpm);
-    // console.log(speed);
+    console.log(speed);
   });
 
   init();
