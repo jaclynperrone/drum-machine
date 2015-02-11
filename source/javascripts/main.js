@@ -11,10 +11,12 @@ $(function(){
     var self = this;
     self.audioFileID = audioFileID;
     self.pattern = pattern;
+    self.audioElement = document.getElementById(self.audioFileID);
 
     self.play = function(){
-      document.getElementById(self.audioFileID).currentTime = 0;
-      document.getElementById(self.audioFileID).play;
+      console.log(self.audioElement);
+      self.audioElement.currentTime = 0;
+      self.audioElement.play();
     }
 
     self.toggleSound = function(status) {
@@ -24,9 +26,9 @@ $(function(){
         self.pattern[status] = 0;
       }
     }
-}
+  }
 
-var kick = new Sound('kick-sound', []);
+  var kick = new Sound('kick-sound', []);
 
   function init() {
     for(var i = 0; i < totalBeats; i++) {
@@ -94,7 +96,6 @@ $('.kick td').click(function(){
     // }
 
     if (kick.pattern[beat] == 1) {
-      console.log('KICK');
       kick.play();
       // document.getElementById('kick-sound').currentTime=0;
       // document.getElementById('kick-sound').play();
