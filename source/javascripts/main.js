@@ -107,6 +107,7 @@ $('.hihat td').click(function(){
     if (kick.pattern[beat] == 1) {
       kick.play();
     }
+
     if (snare.pattern[beat] == 1) {
       snare.play();
     }
@@ -116,5 +117,13 @@ $('.hihat td').click(function(){
       beat = 0;
     }
   }
+
+  $('#btn-mute').change(function(){
+    if ($(this).is(':checked')) {
+      $('audio').prop('muted', true);
+    } else {
+      $('audio').prop('muted', false);
+    }
+  });
 
 });

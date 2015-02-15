@@ -9,6 +9,16 @@ $color-gray-medium: #282828;
 
 $color-body-bg: $color-gray-dark;
 
+%label {
+	color: $color-text-light;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-size: 0.875em;
+	font-weight: 300;
+}
+
+
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	background-color: $color-body-bg;
@@ -23,6 +33,7 @@ select {
 
 label {
 	display: block;
+	@extend %label;
 }
 
 table {
@@ -32,12 +43,8 @@ table {
 }
 
 th {
-	color: $color-text-light;
+	@extend %label;
 	text-align: right;
-	font-weight: normal;
-	text-transform: uppercase;
-	font-size: 0.875em;
-	font-weight: 300;
 }
 
 td {
@@ -51,6 +58,11 @@ td {
 		background-color: darken(#3D464C, 3%);
 	}
 }
+
+input[type="checkbox"] {
+	margin-right: 0.5em;
+}
+
 
 .sequencer {
 	td{
@@ -76,6 +88,12 @@ td {
 .snare {
 	.on {
 		background-color: #2A6C1C;
+	}
+}
+
+.controls {
+	td {
+		background-color: transparent;
 	}
 }
 
