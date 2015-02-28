@@ -28,16 +28,19 @@ $(function(){
   var kick = new Sound('kick-sound', []);
   var hihat = new Sound('hihat-sound', []);
   var snare = new Sound('snare-sound', []);
+  var cymbal = new Sound('cymbal-sound', []);
 
   function init() {
     for(var i = 0; i < totalBeats; i++) {
       hihat.pattern.push(0);  
       kick.pattern.push(0);
       snare.pattern.push(0);
+      cymbal.pattern.push(0);
 
       generateSquares('.kick', i);
       generateSquares('.hihat', i);
       generateSquares('.snare', i);
+      generateSquares('.cymbal', i);
     }
     //start the sequencer
     startTimer(speed);
@@ -91,6 +94,13 @@ $('.hihat td').click(function(){
   // console.log(kick.pattern);
 });
 
+$('.cymbal td').click(function(){
+  var squarePosition = $(this).attr('rel');
+  $(this).toggleClass('on');
+  cymbal.toggleSound(squarePosition);
+  // console.log(kick.pattern);
+});
+
   //timer
   var beat = 0;
 
@@ -110,6 +120,10 @@ $('.hihat td').click(function(){
 
     if (snare.pattern[beat] == 1) {
       snare.play();
+    }
+
+    if (cymbal.pattern[beat] == 1) {
+      cymbal.play();
     }
 
     beat++;
